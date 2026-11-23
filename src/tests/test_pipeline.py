@@ -29,7 +29,7 @@ def temp_profiles_dir():
             "constraints": ["Be concise"],
         }
         profile_path = profiles_dir / "test.yaml"
-        with open(profile_path, "w") as f:
+        with open(profile_path, "w", encoding="utf-8") as f:
             yaml.dump(profile_data, f)
 
         yield profiles_dir
@@ -49,7 +49,7 @@ def temp_templates_dir():
             "prompt": "Test prompt for {topic}",
         }
         template_path = templates_dir / "test.yaml"
-        with open(template_path, "w") as f:
+        with open(template_path, "w", encoding="utf-8") as f:
             yaml.dump(template_data, f)
 
         yield templates_dir

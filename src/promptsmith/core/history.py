@@ -17,6 +17,7 @@ import os
 import sqlite3
 import tempfile
 from collections.abc import Callable
+from contextlib import closing
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -171,7 +172,7 @@ class HistoryStore:
         return target
 
     def _initialize_schema(self) -> None:
-        with self._connect() as conn:
+        with closing(self._connect()) as conn, conn:
             journal_mode = conn.execute("PRAGMA journal_mode = WAL").fetchone()[0]
             if str(journal_mode).lower() != "wal":
                 logger.warning("SQLite WAL mode unavailable; using %s", journal_mode)
@@ -208,7 +209,7 @@ class HistoryStore:
             return None
         created = entry.created_at or datetime.now(timezone.utc).isoformat()
         try:
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 cur = conn.execute(
                     """
                     INSERT INTO history
@@ -257,7 +258,7 @@ class HistoryStore:
         if offset < 0:
             raise ValueError("History offset cannot be negative")
         try:
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 sql = "SELECT * FROM history ORDER BY id DESC"
                 params: tuple = ()
                 if limit is not None:
@@ -273,7 +274,7 @@ class HistoryStore:
         if not self._available:
             return None
         try:
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 row = conn.execute("SELECT * FROM history WHERE id = ?", (entry_id,)).fetchone()
                 return self._row_to_entry(row) if row else None
         except (sqlite3.Error, OSError) as exc:
@@ -284,7 +285,7 @@ class HistoryStore:
         if not self._available:
             return False
         try:
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 cur = conn.execute("DELETE FROM history WHERE id = ?", (entry_id,))
                 return cur.rowcount > 0
         except (sqlite3.Error, OSError) as exc:
@@ -295,10 +296,10 @@ class HistoryStore:
         if not self._available:
             return 0
         try:
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 cur = conn.execute("DELETE FROM history")
                 removed = cur.rowcount
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 conn.execute("VACUUM")
             return removed
         except (sqlite3.Error, OSError) as exc:
@@ -309,7 +310,7 @@ class HistoryStore:
         if not self._available:
             return 0
         try:
-            with self._connect() as conn:
+            with closing(self._connect()) as conn, conn:
                 return int(conn.execute("SELECT COUNT(*) FROM history").fetchone()[0])
         except (sqlite3.Error, OSError) as exc:
             logger.error("Failed to count history: %s", exc)

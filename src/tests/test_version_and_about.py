@@ -117,7 +117,7 @@ def test_about_screen_contents_and_support_button(monkeypatch):
 def test_no_orange_palette_remains():
     """The public build's visual cue is green-on-black; any orange hex
     creeping back into the TUI is a regression."""
-    app_src = (_PROJECT_ROOT / "src" / "promptsmith" / "cli" / "app.py").read_text()
+    app_src = (_PROJECT_ROOT / "src" / "promptsmith" / "cli" / "app.py").read_text(encoding="utf-8")
     for banned in ("#FF8C00", "#FFCC00", "#FFA500", "#806000"):
         assert banned.lower() not in app_src.lower()
     # And the green primaries are actually present.
