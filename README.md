@@ -193,7 +193,7 @@ promptsmith --version
 Expected shape:
 
 ```text
-PromptSmith-cli 1.0.0 (1.0)
+PromptSmith-cli 1.0.1 (1.0.1)
 ```
 
 ## Quick start
@@ -423,6 +423,7 @@ The roadmap is intentionally modest. PromptSmith is your helper, not GLaDOS.
 
 - [Changelog](CHANGELOG.md)
 - [Release checklist](RELEASE_CHECKLIST.md)
+- [v1.0.1 release notes](docs/releases/1.0.1.md)
 - [v1.0 release notes](docs/releases/1.0.0.md)
 
 ## Contributing

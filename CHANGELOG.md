@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.1 - Cross-platform compatibility and stability
+
+Patch release focused on Windows compatibility, resource cleanup,
+and test reliability. No new features or breaking changes.
+
+### Fixed
+
+- Improved SQLite connection cleanup to prevent lingering database
+  handles, particularly on Windows.
+- Standardized UTF-8 text file handling for consistent behavior
+  across operating systems.
+- Stabilized the profile editor integration test by invoking the
+  save button directly when validating profile persistence.
+- Corrected documentation related to cross-platform behavior.
+
+### Validation
+
+- 304 automated tests passing locally.
+- CI verified across Python 3.11-3.14 on macOS, Linux, and Windows.
+- Portable builds validated through the pull-request workflow.
+
 ## 1.0.0 - Initial public release
 
 PromptSmith-cli's first tagged public release. Deterministic prompt
