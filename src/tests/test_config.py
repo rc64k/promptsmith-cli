@@ -23,7 +23,7 @@ def config_with_data(tmp_path):
             "min_ram_gb": 8,
         },
     }
-    with open(config_path, "w") as f:
+    with open(config_path, "w", encoding="utf-8") as f:
         yaml.dump(config_data, f)
     return ConfigManager(config_path)
 

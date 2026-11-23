@@ -116,7 +116,8 @@ def test_profile_editor_create_edit_delete_roundtrip():
                 picker.value = profile_id
                 await pilot.pause()
                 app.screen.query_one("#backend_input", Select).value = "llm"
-                await pilot.click("#save_profile")
+                button = app.screen.query_one("#save_profile")
+                button.press()
                 await pilot.pause()
                 updated = app.profile_manager.get_profile(profile_id)
                 assert updated["backend"] == "llm"

@@ -14,9 +14,9 @@ No cloud inference dependency. No telemetry. No subscriptions.
 
 Just a better prompt before the expensive machine gets involved.
 
-- **Download:** https://github.com/pr0z4k/promptsmith-cli/releases/latest
-- **Source:** https://github.com/pr0z4k/promptsmith-cli
-- **Issues:** https://github.com/pr0z4k/promptsmith-cli/issues
+- **Download:** https://github.com/rc64k/promptsmith-cli/releases/latest
+- **Source:** https://github.com/rc64k/promptsmith-cli
+- **Issues:** https://github.com/rc64k/promptsmith-cli/issues
 - **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 - **License:** [MIT](LICENSE)
 
@@ -130,7 +130,7 @@ Portable-build users do not need Python, pip, Git, or a compiler. They need only
 
 ### Portable release
 
-Download the current platform-specific ZIP from the [latest GitHub release](https://github.com/pr0z4k/promptsmith-cli/releases/latest), extract the complete folder, and use the included launcher.
+Download the current platform-specific ZIP from the [latest GitHub release](https://github.com/rc64k/promptsmith-cli/releases/latest), extract the complete folder, and use the included launcher.
 
 Portable releases are available for:
 
@@ -144,8 +144,8 @@ Each release also includes `SHA256SUMS.txt` for artifact verification.
 ### Homebrew (macOS) <- Recommended user method for macOS
 
 ```sh
-brew tap pr0z4k/promptsmith
-brew install pr0z4k/promptsmith/promptsmith-cli
+brew tap rc64k/promptsmith
+brew install rc64k/promptsmith/promptsmith-cli
 ```
 
 This installs the same portable build as above - including the
